@@ -41,13 +41,14 @@ input[type="search"] {
 .nav__derecha {
     flex-grow: 1;
     justify-content: flex-end;
+    gap: 0.5rem;
 }
 
-.nav__derecha a {
-    margin-left: 1rem;
-    color: black;
+.nav__derecha a.link {
+    margin-left: 0.5rem;
+    color: #212121;
 }
-.nav__derecha a:hover {
+.nav__derecha a.link:hover {
     text-decoration: underline;
 }
 
@@ -56,6 +57,8 @@ input[type="search"] {
     border-radius: 4rem;
     padding: 0.25rem;
     margin-right: 0.5rem;
+    height: 36px;
+    width: 36px;
 }
 .nav__derecha > img:hover {
     background-color: #eee;
@@ -65,11 +68,21 @@ input[type="search"] {
     background: transparent;
     border: none;
     padding: .5rem;
+    height: 40px;
+    width: 40px;
+    border-radius: 3.125rem;
+    cursor: pointer;
 }
 .nav__derecha > Button:hover {
     background-color: #eee;
-    border-radius: 3.125rem;
 }
+.nav__derecha > Button:focus {
+    background-color: #eee;
+}
+
+.nav__derecha > Button:hover > div {
+    cursor: default;
+} 
 
 main {
     flex-grow: 1;
@@ -118,4 +131,79 @@ footer p {
 
 footer p:first-child {
     border-bottom: 1px solid #c2c2c2;
+}
+
+/* Menu apps */
+#btn-apps:focus .menu-apps{
+    visibility: visible;
+}
+.menu-apps {
+    display: grid;
+    grid-template-columns: 84px 84px 84px;
+    grid-auto-rows: max-content;
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin-top: 57px;
+    margin-right: 8px;
+    height: 414px;
+    box-shadow: 0 1px 3px hsl(0deg 0% 0% / 40%);
+    border-radius: 8px;
+    padding: 1rem 1rem;
+    gap: 1rem;
+    visibility: hidden;
+    box-sizing: border-box;
+}
+
+.app-logo {
+    display: block;
+    width: 64px;
+    height: 64px;
+    background-image: url(../img/apps.png);
+    background-size: 64px 3307px;
+}
+
+a.menu-app {
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0 0.25rem 0.25rem;
+    color: #424242;
+}
+.menu-app:hover {
+    background-color: #e3f2fd;
+    border-radius: 0.5rem;
+}
+
+.menu-app .app-logo {
+    transform: scale(.8333333333);
+    height: 62px;
+}
+.menu-app:nth-child(1) .app-logo {
+    background-position: 0 -1794px;
+}
+.menu-app:nth-child(2) .app-logo {
+    background-position: 0 -3174px;
+}
+.menu-app:nth-child(3) .app-logo {
+    background-position: 0 -897px;
+}
+.menu-app:nth-child(4) .app-logo {
+    background-position: 0 -414px;
+}
+.menu-app:nth-child(5) .app-logo {
+    background-position: 0 -2415px;
+}
+.menu-app:nth-child(6) .app-logo {
+    background-position: 0 -1104px;
+}
+.menu-app:nth-child(7) .app-logo {
+    background-position: 0 -69px;
+}
+.menu-app:nth-child(8) .app-logo {
+    background-position: 0 -2346px;
+}
+.menu-app:nth-child(8) .app-logo {
+    background-position: 0 -966px;
 }
