@@ -1,0 +1,25 @@
+:root{
+    --color-primary: #fcc302;
+    --color-secondary: #daac00;
+    --color_accent: #00bec9;
+    --bg-color: #fff;
+    --bg-color-secondary: #343434;
+    --text-color: #313243;
+    --text-color-on-primary: #fff;
+    --width-page: 1200px;
+}
+header{
+    background-color: var(--color-secondary) ;
+    display: flex;
+    justify-content: center;
+}
+.main_nav{
+    max-width: var(--width-page);
+    flex-grow: 1;
+    display: flex;
+    justify-content: space-between;
+    height: 120px;
+}
+.div__derecha, .menu{
+    display: flex;
+}
