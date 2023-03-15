@@ -52,11 +52,12 @@ header{
 }
 .boton_buscar{
     background-color: var(--color_accent);
-    padding: 1rem;
+    padding: 0 1rem;
     border: none;
 }
 .boton_buscar .icono{
     color: var(--text-color-on-primary);
+    font-size: 2rem;
 }
 main {
     margin: 0 auto;
@@ -101,6 +102,10 @@ main {
 }
 .diapositiva__descripcion .boton--outline {
     margin-left: 1rem;
+    /*
+    outline: 2px solid white;
+    outline-offset: -2px;
+    */
 }
 .diapositiva__descripcion p {
     margin: 0.5rem 0 4rem 0;
