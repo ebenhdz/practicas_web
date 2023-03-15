@@ -8,6 +8,10 @@
     --text-color-on-primary: #fff;
     --width-page: 1200px;
 }
+body{
+    font-family: Arial, Helvetica, sans-serif;
+    margin: 0;
+}
 header{
     background-color: var(--color-secondary) ;
     display: flex;
@@ -19,7 +23,37 @@ header{
     display: flex;
     justify-content: space-between;
     height: 120px;
+    align-items: center;
 }
 .div__derecha, .menu{
     display: flex;
+    list-style: none;
+}
+.menu__item a{
+    padding: 1rem;
+    font-size: 1.5rem;
+    text-decoration: none;
+    color: var(--text-color-on-primary);
+}
+.busqueda{
+    margin-left: 2rem;
+    display: flex;
+    box-shadow: 0 3px 8px rgb(0 0 0 / 0.2);
+}
+.busqueda input{
+    background: var(--color-primary);
+    border: none;
+    padding: 1rem;
+    font-size: 1.5rem;
+}
+.busqueda input::placeholder{
+    color: var(--text-color-on-primary);
+}
+.boton_buscar{
+    background-color: var(--color_accent);
+    padding: 1rem;
+    border: none;
+}
+.boton_buscar .icono{
+    color: var(--text-color-on-primary);
 }
