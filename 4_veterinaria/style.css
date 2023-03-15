@@ -7,6 +7,7 @@
     --text-color: #313243;
     --text-color-on-primary: #fff;
     --width-page: 1200px;
+    --nav-height: 120px;
 }
 body{
     font-family: Arial, Helvetica, sans-serif;
@@ -22,7 +23,7 @@ header{
     flex-grow: 1;
     display: flex;
     justify-content: space-between;
-    height: 120px;
+    height: var(--nav-height);
     align-items: center;
 }
 .div__derecha, .menu{
@@ -57,3 +58,51 @@ header{
 .boton_buscar .icono{
     color: var(--text-color-on-primary);
 }
+main {
+    margin: 0 auto;
+}
+.ancho_pagina {
+    max-width: var(--width-page);
+    margin: 0 auto;
+}
+.presentacion {
+    background-color: var(--color-primary);
+    height: calc(100vh - var(--nav-height));
+}
+.diapositiva {
+    display: flex;
+    align-items: center;
+}
+.diapositiva__contenido {
+    display: flex;
+}
+.diapositiva__imagen {
+    margin-left: 5rem;
+}
+.diapositiva__descripcion {
+    color: var(--text-color-on-primary);
+}
+.diapositiva__titulo {
+    font-size: 3rem;
+}
+.diapositiva__descripcion p {
+    font-size: 1.5rem;
+}
+.boton {
+    padding: 1rem 1.5rem;
+    color: var(--text-color-on-primary);
+    border-radius: 0.25rem;
+}
+.boton--primary {
+    background-color: var(--color_accent);
+}
+.boton--outline {
+    border: 2px solid var(--text-color-on-primary);
+}
+.diapositiva__descripcion .boton--outline {
+    margin-left: 1rem;
+}
+.diapositiva__descripcion p {
+    margin: 0.5rem 0 4rem 0;
+}
+
