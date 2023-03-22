@@ -102,6 +102,11 @@ main {
 .boton--primary {
     background-color: var(--color_accent);
 }
+
+.boton--amarillo{
+    background-color: var(--color-primary);
+}
+
 .boton--outline {
     /*border: 2px solid var(--text-color-on-primary);*/
     outline: 2px solid var(--text-color-on-primary);
@@ -114,3 +119,10 @@ main {
     margin: 0.5rem 0 4rem 0;
 }
 
+.presentacion_blanco{
+    background-color: var(--bg-color);
+}
+
+.presentacion_blanco .diapositiva__descripcion{
+    color: var(--text-color);
+}
