@@ -11,6 +11,9 @@
     --width-page: 1200px;
     --nav-height: 120px;
 }
+html {
+    scroll-behavior:smooth;
+}
 body{
     font-family: 'Roboto', sans-serif;
     margin: 0;
@@ -125,4 +128,32 @@ main {
 
 .presentacion_blanco .diapositiva__descripcion{
     color: var(--text-color);
+}
+
+.servicios {
+    display: flex;
+    gap: 5rem;
+    color: var(--text-color-on-primary);
+    justify-content: space-around;
+
+}
+
+.servicios__card{
+    width: 220px;
+}
+
+.servicios__card img{
+    width: 100%;
+    border: .5rem solid white;
+}
+.servicios__card p, .servicios__card h3{
+    text-align: center;
+
+}
+.flex-column{
+    flex-direction: column;
+}
+
+.padding-tb-5 {
+    padding: 5rem 0;
 }
