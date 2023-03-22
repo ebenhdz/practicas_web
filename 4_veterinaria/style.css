@@ -48,7 +48,9 @@ header{
     border: none;
     padding: 1rem;
     font-size: 1.5rem;
-    /* todo: quitar outline en focus */
+}
+.busqueda input:focus {
+    outline: none;
 }
 .busqueda input::placeholder{
     color: var(--text-color-on-primary);
@@ -70,7 +72,7 @@ main {
     margin: 0 auto;
 }
 .presentacion {
-    background-color: red;
+    background-color: var(--color-primary);
     min-height: calc(100vh - var(--nav-height));
 }
 .diapositiva {
@@ -101,14 +103,12 @@ main {
     background-color: var(--color_accent);
 }
 .boton--outline {
-    border: 2px solid var(--text-color-on-primary);
+    /*border: 2px solid var(--text-color-on-primary);*/
+    outline: 2px solid var(--text-color-on-primary);
+    outline-offset: -2px;
 }
 .diapositiva__descripcion .boton--outline {
     margin-left: 1rem;
-    /* todo
-    outline: 2px solid white;
-    outline-offset: -2px;
-    */
 }
 .diapositiva__descripcion p {
     margin: 0.5rem 0 4rem 0;
