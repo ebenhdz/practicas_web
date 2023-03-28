@@ -1,0 +1,189 @@
+@import url('https://fonts.googleapis.com/css2?family=Edu+NSW+ACT+Foundation:wght@400;500;600&display=swap');
+
+:root {
+    --text-color-on-primary: #fff;
+}
+
+html, .btn, input {
+    font-family: 'Edu NSW ACT Foundation', cursive;
+}
+
+html, body, main {
+    height: 100%;
+    width: 100%;
+}
+
+body {
+    background-image: url('./../img/path_bg.png');
+    margin: 0;
+}
+
+main {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.material-symbols-outlined {
+    font-variation-settings:
+    'FILL' 1,
+    'wght' 400,
+    'GRAD' 0,
+    'opsz' 48
+}
+
+#home {
+    text-align: center;
+    min-width: 300px;
+    display: none;
+}
+
+#home h1{
+    color: var(--text-color-on-primary);
+    font-size: 8rem;
+    font-weight: 600;
+    margin-top: 0;
+}
+
+#home form {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+#home .btn {
+    text-transform: uppercase;
+    font-weight: 600;
+    text-shadow: 0px 2px black;
+}
+
+input {
+    padding: 1rem;
+    border-radius: 1rem;
+    border: 1px solid gray;
+    box-shadow: 0 2px gray;
+    font-size: 1.75rem;
+    text-align: center;
+}
+
+input:focus {
+    outline: none;
+}
+
+/* BOTONES */
+.btn {
+    display: block;
+    width: 100%;
+    padding: 1rem 4rem;
+    border-radius: 1rem;
+    border: none;
+    box-shadow: 0 2px 2px rgba(0, 0, 0, 0.4);
+    font-size: 1.5rem;
+    background-color: white;
+    color: #212121;
+    font-weight: 600;
+    position: relative;
+}
+
+.btn:hover {
+    border-bottom: 2px solid rgb(0 0 0 / 0.4);
+    margin-bottom: -2px;
+}
+
+.btn--orange {
+    background-color: #673AB7;
+    color: white;
+}
+
+.btn--failed {
+    background-color: #f44336;
+    color: white;
+}
+
+.btn--correct {
+    background-color: #00d473;
+    color: white;
+}
+
+.btn--correct::before, .btn--failed::before {
+    font-family: 'Material Symbols Outlined';
+    font-variation-settings:
+    'FILL' 1,
+    'wght' 400,
+    'GRAD' 0,
+    'opsz' 24;
+    position: absolute;
+    top: calc(50% - 12px);
+    left: 1.5rem;
+}
+
+.btn--correct::before {
+    content: '\e86c';
+}
+
+.btn--failed::before {
+    content: '\e5c9';
+}
+
+/* BOTONES */
+
+#questions {
+    margin: 2rem;
+}
+
+.questions__title {
+    color: var(--text-color-on-primary);
+    font-size: 2.5rem;
+    text-shadow: 1px 2px 1px rgb(0 0 0 / 0.7)
+}
+
+.question {
+    background-color: #0ab1de;
+    padding: 1rem;
+    border-radius: 1rem;
+    transform: skew(0, -1deg);
+    box-shadow: 0 0px 5px rgb(0 0 0 / 0.6);
+}
+.question__text {
+    background-color: #f3fdff;
+    font-weight: 600;
+    font-size: 2rem;
+    padding: 3rem;
+    border-radius: 1rem;
+    position: relative;
+    margin: 0;
+    min-height: 10rem;
+    transform: skew(0, 1deg);
+    box-shadow: 0 0px 5px rgb(0 0 0 / 0.4);
+    overflow: hidden;
+    box-sizing: border-box;
+    user-select: none;
+}
+
+.question__text::after {
+    content: '\eb8b';
+    font-family: 'Material Symbols Outlined';
+    font-variation-settings:
+    'FILL' 1,
+    'wght' 400,
+    'GRAD' 0,
+    'opsz' 24;
+    font-size: 15rem;
+    color: #dbf5fc;
+    position: absolute;
+    top: -70px;
+    right: -70px;
+    z-index: -1;
+}
+.answers {
+    margin-top: 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+@media only screen and (min-width: 768px) {
+    #questions {
+        max-width: 50%;
+    }
+}

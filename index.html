@@ -4,10 +4,30 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
+    <title>Proyecto Programacion Web</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head> 
 <body>
-    <h1>Proyectos</h1>
-    <a href="/4_veterinaria/">Veterinaria</a>
+    <main>
+    <h1 class="title-page">Proyectos</h1>
+    <ul class="portafolio__list">
+        <li class="portafolio__item">
+            <a class="portafolio__link" 
+                href="/Unidad_2/4_veterinaria/"
+                style="--background: url('./assets/img/veterinaria.png')">
+                <p class="portafolio__project_name">Veterinaria</p>
+            </a>
+        </li>
+        <li class="portafolio__item">
+            <a class="portafolio__link" href="/Unidad_3/Quiz App/"
+                style="--background: url('./assets/img/quiz.png')">
+                <p class="portafolio__project_name">Quiz App</p>
+            </a>
+        </li>
+    </ul>
+    </main>
 </body>
 </html>
