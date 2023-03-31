@@ -8,14 +8,18 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
     <link rel="stylesheet" href="assets/css/main.css">
     <script src="assets/js/confetti.js" type="module"></script>
+    <script src="assets/js/questions.js"></script>
     <script src="assets/js/main.js" type="module"></script>
 </head>
 <body>
     <main>
-        <section id="home">
+        <section 
+        id="home"
+        class="section-visible"
+        >
             <h1>Quiz</h1>
             <form id="form-start">
-                <input placeholder="Get me your name" />
+                <input placeholder="Get me your name" id="name" />
                 <button type="submit" class="btn btn--orange">Iniciar</button>
             </form>
         </section>
