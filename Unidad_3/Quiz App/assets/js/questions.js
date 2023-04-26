@@ -46,4 +46,36 @@ const PREGUNTAS = [{
             "isRight": false
         }
     ]
+}, {
+    "name": "¿En qué año se produjo la caída del Muro de Berlín?",
+    "answers": [
+        {
+            "answer": "1952",
+            "isRight": false
+        },
+        {
+            "answer": "1989",
+            "isRight": true
+        },
+        {
+            "answer": "1810",
+            "isRight": false
+        }
+    ]
+}, {
+    "name": "¿En qué mes se celebra la Revolución Mexicana?",
+    "answers": [
+        {
+            "answer": "Septiembre",
+            "isRight": false
+        },
+        {
+            "answer": "Mayo",
+            "isRight": false
+        },
+        {
+            "answer": "Noviembre",
+            "isRight": true
+        }
+    ]
 }];

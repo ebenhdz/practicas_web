@@ -6,16 +6,25 @@ var seccionInicio = document.getElementById("home");
 
 var seccionPreguntas = document.getElementById("questions");
 
+var seccionFinal = document.getElementById("final");
+
+var btnReiniciar = document.getElementById("btn-reiniciar");
+
+
 var indicePreguntaActual = 0;
+
+var nombreUsuario = "";
+var totalAciertos = 0;
+var preguntasJuegoActual = [];
 
 formInicio.addEventListener("submit", function(event) {
     event.preventDefault();
 
-    //var nombre = document.getElementById("name").value;
+    //var nombreUsuario = document.getElementById("name").value;
 
-    var nombre = event.target.name.value;
+    nombreUsuario = event.target.name.value;
 
-    if (nombre.trim() == "") {
+    if (nombreUsuario.trim() == "") {
         alert("Ingresa tu nombre");
         return;
     }
@@ -24,11 +33,25 @@ formInicio.addEventListener("submit", function(event) {
 
     seccionPreguntas.classList.add("section-visible");
 
-    cargarPregunta();
+    reniciarPreguntas();
 });
 
+btnReiniciar.addEventListener("click", function(event) {
+    seccionFinal.classList.remove("section-visible");
+    seccionPreguntas.classList.add("section-visible");
+    reniciarPreguntas();
+});
+
+function reniciarPreguntas() {
+    totalAciertos = 0;
+    indicePreguntaActual = 0;
+    shuffle(PREGUNTAS);
+    preguntasJuegoActual = PREGUNTAS.slice(0, 3); // 0,1,2
+    cargarPregunta();
+}
+
 function cargarPregunta() {
-    let preguntaActual = PREGUNTAS[indicePreguntaActual];
+    let preguntaActual = preguntasJuegoActual[indicePreguntaActual];
 
     let tituloPreguntas = document.querySelector(".questions__title");
 
@@ -36,7 +59,7 @@ function cargarPregunta() {
 
     let divRespuestas = document.querySelector(".answers");
 
-    tituloPreguntas.innerHTML = `Question ${indicePreguntaActual + 1} of ${PREGUNTAS.length}`;
+    tituloPreguntas.innerHTML = `Question ${indicePreguntaActual + 1} of ${preguntasJuegoActual.length}`;
 
     textoPreguntas.innerHTML = preguntaActual.name;
 
@@ -65,23 +88,67 @@ function agregarEventoClickRespuestas() {
 
 function onAnswerClick(event) {
     let numRespuesta = event.target.dataset.index;
-    let preguntaActual = PREGUNTAS[indicePreguntaActual];
+    let preguntaActual = preguntasJuegoActual[indicePreguntaActual];
 
     let respuesta = preguntaActual.answers[numRespuesta];
 
-    validarRespuesta(respuesta);
+    validarRespuesta(event.target, respuesta, preguntasJuegoActual);
 }
 
-function validarRespuesta(respuesta) {
-    if(respuesta.isRight) alert("Acertaste")
-    else alert("Respuesta Incorrecta");
+function validarRespuesta(btnRespuesta, respuesta, Preguntas) {
+    var botonesRespuestas = document.querySelectorAll(".answers .btn");
+
+    botonesRespuestas.forEach(function(boton){
+        boton.classList = ["btn"];
+        boton.setAttribute("disabled", true);
+    });
+
+    if(respuesta.isRight) {
+        btnRespuesta.classList.add("btn--correct");
+        totalAciertos++;
+    }
+    else {
+        btnRespuesta.classList.add("btn--failed");
+    }
 
     indicePreguntaActual++;
 
-    if(indicePreguntaActual == PREGUNTAS.length) {
-        runConfetti();
-        alert("Has terminado con el Quizz");
+    if(indicePreguntaActual == Preguntas.length) {
+        setTimeout(runConfetti, 4000);
+        setTimeout(mostrarSeccionFinal, 4000);
         return;
     }
-    cargarPregunta();
+
+    setTimeout(cargarPregunta, 4000);
+    setTimeout(habilitarBotones, 4100);
+    //cargarPregunta();
 }
+
+function habilitarBotones(botones) {
+    if(botones) {
+        botones.forEach(function(boton){
+            boton.setAttribute("disabled", false);
+        });
+    }
+}
+
+function mostrarSeccionFinal() {
+    seccionPreguntas.classList.remove("section-visible");
+    seccionFinal.classList.add("section-visible");
+    seccionFinal.querySelector(".final_usu-nombre").textContent = nombreUsuario;
+    seccionFinal.querySelector(".final_puntaje_aciertos").textContent = `${totalAciertos} de ${preguntasJuegoActual.length}`;
+}
+
+
+function shuffle(array) {
+    for (let i = array.length - 1; i > 0; i--) {
+      let j = Math.floor(Math.random() * (i + 1)); // índice aleatorio entre 0 e i
+  
+      // intercambia elementos array[i] y array[j]
+      // usamos la sintaxis "asignación de desestructuración" para lograr eso
+      // encontrarás más información acerca de esa sintaxis en los capítulos siguientes
+      // lo mismo puede ser escrito como:
+      // let t = array[i]; array[i] = array[j]; array[j] = t
+      [array[i], array[j]] = [array[j], array[i]];
+    }
+  }

@@ -35,7 +35,6 @@ main {
 #home {
     text-align: center;
     min-width: 300px;
-    display: none;
 }
 
 #home h1{
@@ -129,7 +128,6 @@ input:focus {
 
 #questions {
     margin: 2rem;
-    display: none;
 }
 
 .questions__title {
@@ -183,7 +181,19 @@ input:focus {
     gap: 1rem;
 }
 
+.final_usu-nombre, .final_puntaje {
+    text-align: center;
+    color: white;
+}
+
+.final_img-medalla {
+    margin: 1rem 0;
+}
 /* Visibilidad de secciones */
+main > section {
+    display: none;
+}
+
 .section-visible {
     display: block !important;
 }

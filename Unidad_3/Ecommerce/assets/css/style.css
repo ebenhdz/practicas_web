@@ -1,0 +1,136 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700&family=Ubuntu:wght@300;400&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+html, body {
+    height: 100%;
+}
+
+html {
+    font-family: 'Ubuntu', sans-serif;
+}
+
+body {
+    background: #efefef;
+    display: flex;
+    flex-direction: column;
+}
+
+main {
+    background: url('../img/living-room-scandinavian-interior-design.jpg') no-repeat center center / cover;
+    flex-grow: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+h1 {
+    color: white;
+    font-size: 5rem;
+}
+
+:root {
+    --color-primary: #feca52;
+    --text-color: #343434;
+}
+
+.main-nav {
+    background: var(--color-primary);
+    display: flex;
+    gap: 2rem;
+    align-items: center;
+    padding: 0 2rem;
+}
+
+.main-nav__menu {
+    height: 100%;
+    display: flex;
+}
+
+.main-nav ul {
+    list-style: none;
+}
+
+.main-nav__menu-item {
+    font-size: 1.75rem;
+    float: left;
+}
+
+.main-nav a{
+    display: block;
+    text-decoration: none;
+    color: var(--text-color);
+}
+
+.main-nav__logo {
+    height: 4.5rem;
+    padding: 0.5rem;
+    box-sizing: border-box;
+}
+.main-nav__logo img{
+    height: 100%;
+}
+
+.main-nav__search, .main-nav__search form{
+    height: 100%;
+}
+
+.main-nav__search form {
+    display: flex;
+    align-items: center;
+}
+
+.main-nav__search input {
+    min-width: 400px;
+    padding: 0.5rem 1rem;
+    font-size: 1.5rem;
+    border-radius: 0.25rem;
+    border: none;
+}
+
+.main-nav__cart {
+    margin-left: auto;
+}
+
+.main-nav__cart span {
+    font-size: 2.5rem;
+}
+
+.main-nav__menu-item a:hover {
+    background-color: #343434;
+    color: var(--color-primary);
+}
+
+.main-nav__menu-item a {
+    padding: 0 2rem;
+    display: block;
+    height: 5rem;
+    line-height: 5rem;
+}
+
+.main-nav__submenu {
+    display: none;
+    min-width: 140px;
+    position: absolute;
+    background-color: rgba(0, 0, 0, 0.6);
+}
+
+.main-nav__submenu a {
+    padding: 0 2rem;
+    font-weight: lighter;
+    color: var(--color-primary);
+}
+.main-nav__submenu a:hover {
+    color: white;
+}
+
+.main-nav__menu-item:hover .main-nav__submenu{
+    display: block;
+}
+
+input:focus {
+    outline: none;
+}
