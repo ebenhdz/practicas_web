@@ -12,16 +12,14 @@ const route = (event) => {
 const routes = {
     404: "/pages/404.html",
     "/": "/pages/index.html",
-    "/about": document.getElementsByTagName("link")[0].import,
+    "/about": "/pages/about.html",
     "/lorem": "/pages/lorem.html"
 };
 
 const handleLocation = async () => {
     const path = window.location.pathname;
     const route = routes[path] || routes[404];
-    console.log(route);
-    if(path == "/about") var html = route;
-    else var html = await fetch(route).then((data) => data.text());
+    var html = await fetch(route).then((data) => data.text());
     document.getElementById("main-page").innerHTML = html;
 };
 
