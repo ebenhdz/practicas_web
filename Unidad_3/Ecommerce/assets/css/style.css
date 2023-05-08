@@ -22,9 +22,9 @@ body {
 main {
     background: url('../img/living-room-scandinavian-interior-design.jpg') no-repeat center center / cover;
     flex-grow: 1;
+    flex-direction: column;
     display: flex;
     align-items: center;
-    justify-content: center;
 }
 
 h1 {
@@ -133,4 +133,64 @@ h1 {
 
 input:focus {
     outline: none;
+}
+
+.productos {
+    display: flex;
+    gap: 1rem;
+}
+.producto {
+    flex-basis: 250px; /* width */
+    border-radius: 0.5rem;
+    background-color: white;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+.producto img {
+    width: 100%;
+}
+
+.producto-nombre {
+    margin-bottom: 1rem;
+}
+
+.producto-detalle {
+    padding: 1rem;
+    flex-grow: 1;
+}
+
+.producto-descripcion {
+    color: #757575;
+}
+
+.producto-precio {
+    text-align: center;
+    font-size: 1.25rem;
+    margin-bottom: 1rem;
+}
+
+.producto footer {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    padding: 0 1rem 1rem;
+}
+
+.btn {
+    border: none;
+    background-color: #feca52;
+    color: #343434;
+    padding: 1rem;
+    font-size: 1rem;
+}
+
+.btn:hover {
+    background-color: #343434;
+    color: #feca52;
+}
+
+.btn-add-cart {
+    flex-grow: 1;
 }

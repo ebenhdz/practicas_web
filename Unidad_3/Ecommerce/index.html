@@ -9,6 +9,7 @@
       href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0"
     />
     <link rel="stylesheet" href="./assets/css/style.css" />
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script defer src="assets/js/main.js" type="module"></script>
     <title>Ecommerce</title>
   </head>
@@ -19,15 +20,15 @@
         <ul class="main-nav__menu">
           <li class="main-nav__menu-item">
             <a href="">Categories</a>
-            <ul class="main-nav__submenu" id="menu-categorias">
-            </ul>
-        </li>
+            <ul class="main-nav__submenu" id="menu-categorias"></ul>
+          </li>
           <li class="main-nav__menu-item"><a href="">Offers</a></li>
           <li class="main-nav__menu-item"><a href="">About</a></li>
         </ul>
         <div class="main-nav__search">
-          <form action="#">
+          <form action="#" id="main-search">
             <input type="search" name="search" placeholder="Search product" />
+            <input type="submit" hidden />
           </form>
         </div>
         <div class="main-nav__cart">
@@ -40,6 +41,23 @@
     </header>
     <main>
       <h1>Shoppe</h1>
+      <section class="productos">
+        <template id="template-producto">
+          <article class="producto">
+            <img src="https://i.dummyjson.com/data/products/1/thumbnail.jpg" />
+            <div class="producto-detalle">
+              <h2 class="producto-nombre">Iphone</h2>
+              <p class="producto-descripcion">
+                An apple mobile which is nothing like apple
+              </p>
+            </div>
+            <footer>
+              <p class="producto-precio">2229.22</p>
+              <button class="btn btn-add-cart">Add Cart</button>
+            </footer>
+          </article>
+        </template>
+      </section>
     </main>
   </body>
 </html>
