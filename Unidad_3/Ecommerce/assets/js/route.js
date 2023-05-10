@@ -1,37 +1,55 @@
-import {renderCategoria} from './categorias.js'
+import { renderCategoria } from "./categorias.js";
+import { consultarProducto } from "./productos.js";
 
-const route = (event) => {
-    //Captura el evento Click del link
-    event = event || window.event;
-    event.preventDefault();
-    //Crear un registro en el historial del navegador
-    window.history.pushState({}, "", event.target.href);
-    handleLocation();
-};
+export const router = new Navigo("/", true);
+const $main = document.querySelector('#root');
 
-const routes = {
-    404: "<h2>Pagina no encontrada<h2>",
-    "/": "",
-    "/categoria/smartphones": renderCategoria('smartphones'),
-    "/categoria/laptops": renderCategoria('laptops'),
-    "/categoria/groceries": renderCategoria('groceries'),
-    "/carrito": ""
-};
+export function initRouter() {
+  //window.router = router; // Solamente para testing
+    console.log("Iniciando")
+  let { href: currentURL, origin: host } = window.location;
+  console.log("currentURL", currentURL);
+  console.log("host", host);
+  let currentPath = currentURL.replace(host, "");
+  console.log("currentPath", currentPath);
 
-const handleLocation = async () => {
-    const path = window.location.pathname;
-    const route = routes[path] || routes[404];
-    const $root = document.getElementById("root")
-    route.then($html => {
-        $root.textContent = "";
-        $root.appendChild($html);
-    });
-};
+  router.on("/search", ({ data, params, queryString }) => {
+    if (params) {
+      if (params.q) {
+        let busqueda = params.q; // ?q=iphone { q: 'iphone'}
+        consultarProducto(busqueda)
+        .then(seccion => {
+            $main.textContent = '';
+            $main.appendChild(seccion)
+        });
+      }
+    }
+  });
 
-window.onpopstate = handleLocation;
-//Damos acceso global a nuestra funcion route
-window.route = route;
+  router.on("/categoria/:categoria", ({ data }) => {
+    renderCategoria(data.categoria)
+    .then(seccion => {
+        $main.textContent = '';
+        $main.appendChild(seccion)
+    })
+  });
 
-handleLocation();
+  router.on("/about", () => {
+    console.log("path about");
+    document.querySelector("main").innerHTML =
+      '<h2 style="margin-top: 100px">About<h2>';
+  });
 
-console.log("hola")
+  // with the notFound method
+  router.notFound(() => {
+    document.querySelector("main").innerHTML =
+      '<h2 style="margin-top: 100px">Page not found<h2>';
+  });
+
+  router.resolve(currentPath);
+
+  /*
+      Cambios:
+      router.navigate('') cuando se realize una busqueda
+    */
+}

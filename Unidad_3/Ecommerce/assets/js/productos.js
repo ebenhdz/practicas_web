@@ -1,22 +1,31 @@
+import { router } from "./route.js";
+
 export function buscarProducto(event) {
   event.preventDefault();
   var busqueda = event.target.search.value;
 
-  axios
+  router.navigate('/search?q=' + busqueda)
+}
+
+export async function consultarProducto(busqueda) {
+  let productos = await axios
     .get('https://dummyjson.com/products/search?q=' + busqueda)
     .then(function (response) {
       // manejar respuesta exitosa
-      renderProductos(response.data.products)
+      return renderProductos(response.data.products)
     })
     .catch(function (error) {
       // manejar error
       console.log(error);
     })
+  return productos;
 }
 
 function renderProductos(productos) {
   const fragment = document.createDocumentFragment();
-  const $seccionProductos = document.querySelector('.productos');
+
+  const $sectionProductos = document.createElement('section');
+  $sectionProductos.classList.add('productos');
 
   const $template  = document.querySelector('#template-producto');
 
@@ -36,8 +45,9 @@ function renderProductos(productos) {
     fragment.appendChild($clonArticulo);
   }
 
-  $seccionProductos.appendChild(fragment);
+  $sectionProductos.appendChild(fragment);
 
+  return $sectionProductos;
 }
 
 function agregarProductoCarrito(producto) {
