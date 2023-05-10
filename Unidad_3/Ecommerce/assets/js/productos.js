@@ -3,7 +3,7 @@ import { router } from "./route.js";
 export function buscarProducto(event) {
   event.preventDefault();
   var busqueda = event.target.search.value;
-
+  event.target.reset();
   router.navigate('/search?q=' + busqueda)
 }
 
