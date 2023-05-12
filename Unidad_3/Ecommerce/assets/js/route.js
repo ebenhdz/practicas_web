@@ -47,7 +47,7 @@ export function initRouter() {
   });
 
   router.on("/producto/:id", ({data}) => {
-    document.querySelector("main").innerHTML = getProductoInfo();
+    document.querySelector("main").innerHTML = getProductoInfo(data.id);
   });
 
   // with the notFound method

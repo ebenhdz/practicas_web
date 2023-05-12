@@ -1,4 +1,5 @@
 import { router } from "./route.js";
+import { getProducts } from "./bd.js";
 
 export function buscarProducto(event) {
   event.preventDefault();
@@ -93,13 +94,16 @@ export function getProductoDemo() {
   </section>`;
 }
 
-export function getProductoInfo() {
+export function getProductoInfo(id) {
+  let productos = getProducts();
+  let producto = productos[id - 1];
+  console.log(producto)
   return `
   <section class="info-producto">
       <article class="info-producto__card">
           <aside class="info-producto__gallery">
               <div class="gallery__focus_photo">
-                  <img src="https://i.dummyjson.com/data/products/2/thumbnail.jpg">
+                  <img src="${producto.thumbnail}">
               </div>
               <div class="gallery__carousel">
                   <img src="https://i.dummyjson.com/data/products/1/1.jpg">
@@ -108,9 +112,8 @@ export function getProductoInfo() {
               </div>
           </aside>
           <div class="info-producto__body">
-              <h2 class="info-producto__name">Iphone</h2>
-              <p class="info-producto__description">
-              SIM-Free, Model A19211 6.5-inch Super Retina HD display with OLED technology A12 Bionic chip with ...
+              <h2 class="info-producto__name">${producto.title}</h2>
+              <p class="info-producto__description">${producto.description}
               </p>
               <p class="info-producto__price"><span class="product-price">$ 129</span><span class="product-discount">- 10.58 %</span></p>
               <p class="info-producto__stock">

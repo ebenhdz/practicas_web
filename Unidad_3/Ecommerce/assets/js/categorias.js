@@ -1,4 +1,5 @@
 import { router } from "./route.js";
+import { saveProducts } from "./bd.js";
 
 export default function getCategorias() {
   var xhttp = new XMLHttpRequest();
@@ -48,7 +49,10 @@ function crearCategorias(lista) {
 export async function renderCategoria(categoria) {
   let $productos = await fetch("https://dummyjson.com/products/category/" + categoria)
     .then((res) => res.json())
-    .then((res) => templateProductos(res.products));
+    .then((res) => {
+      saveProducts(res.products);
+      return templateProductos(res.products)
+    });
 
   const $sectionProductos = document.createElement('section');
   $sectionProductos.classList.add('productos');
