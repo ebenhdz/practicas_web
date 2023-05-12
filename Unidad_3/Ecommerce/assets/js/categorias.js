@@ -1,3 +1,5 @@
+import { router } from "./route.js";
+
 export default function getCategorias() {
   var xhttp = new XMLHttpRequest();
 
@@ -60,7 +62,7 @@ function templateProductos(productos) {
   const fragment = document.createDocumentFragment();
   const $template = document.querySelector("#template-producto");
 
-  for (const producto of productos) {
+  for (const [index, producto] of productos.entries()) {
     const $clonArticulo = $template.content.cloneNode(true);
 
     $clonArticulo.querySelector("img").src = producto.thumbnail;
@@ -78,6 +80,10 @@ function templateProductos(productos) {
       .querySelector(".btn-add-cart")
       .addEventListener("click", agregarProductoCarrito, producto);
 
+    $clonArticulo
+      .querySelector(".btn-info")
+      .setAttribute("href", `/producto/${index + 1}`);
+
     fragment.appendChild($clonArticulo);
   }
 
@@ -86,4 +92,5 @@ function templateProductos(productos) {
 
 function agregarProductoCarrito(producto) {
   console.log("Agregado al carrito")
+  router.navigate('/producto/2')
 }

@@ -1,5 +1,5 @@
 import { renderCategoria } from "./categorias.js";
-import { consultarProducto } from "./productos.js";
+import { consultarProducto, getProductoDemo, getProductoInfo } from "./productos.js";
 
 export const router = new Navigo("/", true);
 const $main = document.querySelector('#root');
@@ -12,6 +12,12 @@ export function initRouter() {
   console.log("host", host);
   let currentPath = currentURL.replace(host, "");
   console.log("currentPath", currentPath);
+
+  router.on("/", () => {
+    console.log("Entro", getProductoDemo());
+    $main.textContent = '';
+    $main.innerHTML = getProductoDemo();
+  });
 
   router.on("/search", ({ data, params, queryString }) => {
     if (params) {
@@ -38,6 +44,10 @@ export function initRouter() {
     console.log("path about");
     document.querySelector("main").innerHTML =
       '<h2 style="margin-top: 100px">About<h2>';
+  });
+
+  router.on("/producto/:id", ({data}) => {
+    document.querySelector("main").innerHTML = getProductoInfo();
   });
 
   // with the notFound method
