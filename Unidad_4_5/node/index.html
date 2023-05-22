@@ -5,63 +5,11 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/picnic" />
-    <style>
-      html {
-        --color-subtle-background: hsl(225deg, 25%, 95%);
-        --color-subtle-floating: hsl(0deg, 0%, 100%);
-      }
-      body {
-        background: var(--color-subtle-background);
-      }
-      main {
-        background: var(--color-subtle-floating);
-      }
-      main > h1 {
-        background-color: hsl(210deg, 55%, 92%);
-        padding: 6rem 2rem;
-      }
-
-      section {
-        margin: 0 auto;
-        padding-top: 48px;
-        padding-left: 32px;
-        padding-right: 32px;
-        display: flex;
-        flex-direction: row-reverse;
-        -webkit-box-pack: center;
-        justify-content: center;
-        align-items: flex-start;
-        max-width: 1100px;
-      }
-
-      aside {
-        flex: 0 100000 250px;
-        position: sticky;
-        top: 48px;
-        max-height: calc(100vh - 148px);
-        overflow: auto;
-        padding-bottom: 16px;
-        margin-left: auto;
-        margin-top: 4px;
-      }
-
-      aside h2 {
-        font-size: 1.1rem;
-      }
-
-      aside a {
-        font-size: 1rem;
-      }
-
-      article {
-        flex: 1 1 686px;
-        max-width: min(686px, 100%);
-      }
-
-      p > img {
-        max-width: 100%;
-      }
-    </style>
+    <link rel="stylesheet" href="main.css">
+    <!--<link rel="stylesheet"
+    href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/default.min.css">-->
+    <link rel="stylesheet" href="custom-theme.css">
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js"></script>
     <title>Notas Dev</title>
   </head>
   <body>
@@ -75,6 +23,7 @@
           var converter = new showdown.Converter({tables: true});
           var html = converter.makeHtml(text);
           $main.innerHTML = html;
+          hljs.highlightAll();
         })
         .catch((err) => {
           console.log(err);

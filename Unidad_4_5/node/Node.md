@@ -2,7 +2,7 @@
 
 <section markdown="1">
 <aside markdown="1">
-## TABLE OF CONTENT
+## TABLE OF CONTENTS
 - [Que es node.js](#queesnode)
 - [Caracteristicas](#caracteristicas)
 - [Conceptos Importantes](#conceptosimportantes)
@@ -25,8 +25,9 @@
 - [Modelo Cliente-Servidor](#modeloclienteservidor)
 - [Primer Servidor](#primerservidor)
     * [Modulo HTTP](#modulohttp)
+    * [Modulo URL](#modulourl)
 - [Routing](#routing)
-- [Express](#express)
+- [Nodemon](#nodemon)
 </aside>
 
 <article markdown="1">
@@ -118,18 +119,30 @@ Funcionalidad organizada en uno o varias archivos Javascript que puede ser reuti
 Los **módulos CommonJS** es un standar de uso para implementar modulos en JavaScript del lado del servidor y forma default de trabajar con modulos en Node.js. Node.js también es compatible con el estándar de **módulos ECMAScript** que utilizan los navegadores.
 
 - Exportar  
-```
+```js
 //saludo.js
 function saludar(nombre) {
     return `Hola, ${nombre}`;
 }
 
+function holaMundo() {
+    console.log('Hola mundo');
+}
+
 // Modo 1
 module.exports.saludar = saludar;
+module.exports.holaMundo = holaMundo;
 
 // Modo 2
 module.exports = {
-    saludar: saludar
+    saludar: saludar,
+    holaMundo: holaMundo
+}
+
+// Modo 3
+module.exports = {
+    saludar,
+    holaMundo
 }
 ```
 
@@ -149,7 +162,9 @@ Es una expresion en javascript que permite extraer los valores de arreglos y obj
 
 Podemos usarlo al momento de importar modulos.
 
-`const { saludar, saludarHolaMundo} = require('./saludo');`  
+```
+const { saludar, saludarHolaMundo} = require('./saludo');
+```  
 
 [Documentacion destructuracion](https://developer.mozilla.org/es/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment)
 
@@ -167,22 +182,50 @@ Modulos:
 #### Modulo console
 implementa la funcionalidad similar a la consola del navegador
 
+```
+console.log("Hola")
+console.warn("advertencia");
+console.error("Ocurrio un error");
+console.error(new Error("Ocurrio un error!"));
+```
+
 #### Modulo process
 Provee info sobre el proceso donde node se esta ejecutando
 
-#### Modulo OS (operating system)
+```
+console.log(process)
+console.log(process.env)
 
+console.log(process.argv);
+```
+
+#### Modulo OS (operating system)
+```
+const os = require('os');
+
+console.log(os.type())
+console.log(os.homedir()) //directiorio principal
+
+console.log(os.uptime())  //tiempo que lleva encendido el os
+console.log(os.userInfo())
+```
 #### Modulo timers (Temporizador)
 Contiene funciones que ejecutan codigo luego de cierto periodo.
 
-`setTimeout(funcion, milisegundos, argumentos)`  
-    Ejecuta el codigo despues de un numero de milisegundos, 1 seg = 1000 milisegundos  
+```
+setTimeout(funcion, milisegundos, argumentos)
+// Ejecuta el codigo despues de un numero de milisegundos, 1 seg = 1000 milisegundos  
+```  
 
-`setInterval(function, intervalo, argumentos)`  
-    Ejecuta el codigo infinitamente con un tiempo de espera en milisegundos 
+```
+setInterval(function, intervalo, argumentos)
+// Ejecuta el codigo infinitamente con un tiempo de espera en milisegundos 
+```  
 
-`setInmediate(funcion, argumentos)`  
-    Ejecuta codigo asincrono en la proxima iteracion del ciclo de eventos (lo mas pronto posible)  
+```
+setInmediate(funcion, argumentos)
+Ejecuta codigo asincrono en la proxima iteracion del ciclo de eventos (lo mas pronto posible)  
+```  
 
 #### Modulo fs
 File System  
@@ -203,7 +246,29 @@ fs.rename()
 // funcion sincrona
 fs.renameSync()
 ```
+Ejemplos: 
+```js
+// Leer archivo
+fs.readFile("index.html", 'utf-8', (err, contenido) => {
+    if(err)
+        throw err; //Lanza (genera) un error
+    console.log(contenido);
+})
 
+// Eliminar archivo
+fs.unlink('main.html', (err) => {
+    if(err)
+        throw err;
+    console.log('Archivo eliminado');
+})
+
+//Remplazar todo el contenido del archivo
+fs.watchFile('index.html', '<p>hola</p>', (err) => {
+    if(err)
+        throw err;
+    console.log('Contenido remplazado existosamente');
+})
+```
 ## NPM
 Es el gestor de paquetes mas grande del mundo para node. Tambien es una herramienta para linea de comandos.  
 
@@ -222,8 +287,10 @@ Solo los modulos que tienen un archivo package.json son paquetes.
 Paquete que otro paquete necesita para funcionar.  
 
 ### Crear un paquete con npm
-`npm init`
-`npm init --yes` // Crea package.json con valores por defecto
+```shell
+npm init
+npm init --yes // Crea package.json con valores por defecto
+```
 
 ### Instalar paquetes externos
 1. Buscar el paquete en google: npm express
@@ -264,7 +331,18 @@ nos permite:
 - Emitir
 - Escuchar  
 
-`Ex: 8`  
+`Ex: 8` 
+```
+const EventEmitter = require('events');
+
+const emisorProductos = new EventEmitter();
+
+emisorProductos.on('compra', (total) => {
+    console.log('Se realizo una compra por $${total}');
+});
+
+emisorProductos.emit('compra', 500);
+``` 
 
 #### Promesas
 Objeto que representa el eventual resultado (o error) de una operacion asincrona.
@@ -286,12 +364,90 @@ Ese objecto se asocia a una callback function.
 **Funcion callback** es una funcion que se pasa a otra funcion como argumento y luego se ejecuta dentro de la funcion externa.  
 Las promesas tienen un metodo **.then()**, con el que podemos decidir que ocurre cuando se completa la promesa (exito o error);  
 `Ex 9`  
+```javascript
+const promesaCumplida = true;
+
+const miPromesa = new Promise((resolve, reject) => {
+    setTimeout(()=> {
+        if (promesaCumplida) {
+            resolve('Promesa cumplida')
+        } else {
+            reject('Promesa rechazada')
+        }
+    }, 3000)
+});
+
+const manejarPromesaCumplida = (valor) => {
+    console.log(valor);
+};
+
+const manejarPromesaRechazada = (razonRechazo) => {
+    console.log(razonRechazo);
+};
+
+miPromesa.then(manejarPromesaCumplida, manejarPromesaRechazada)
+```
 **.catch()**  
 Metodo que se ejecuta si la promesa es rechazada.  
 
 **Encadenar promesas y async await**  
 `Ex 10`  
+```js
+// Imaginemos estamos en una tienda y queremos comprar un producto
+// Como no sabemos cuando tiempo tome el ordenar el producto creamos una promesa
 
+function ordernarProducto(producto) {
+    return new Promise((resolve, reject) => {
+        console.log(`Ordenando: ${producto}`);
+        setTimeout(() => {
+            if(producto === 'taza') resolve('Taza ordenada');
+            else reject('Producto no disponible');
+        }, 2000);
+    })
+}
+
+function procesarPedido(respuesta) {
+    return new Promise((resolve) => {
+        console.log('Procesando respuesta...');
+        setTimeout(() => {
+            resolve('Gracias por tu compra. Disfruta tu producto.')
+        }, 4000);
+    });
+}
+
+
+// ordernarProducto('taza')
+// .then(respuesta => {
+//     console.log('Respuesta recibida:');
+//     console.log(respuesta);
+//     return procesarPedido(respuesta);
+// })
+// .then(respuestaProcesada => {
+//     console.log(respuestaProcesada);
+// })
+// .catch(error => {
+//     console.log(error);
+// })
+
+// Si necesitamos encadenar mas procesos esto seria mas dificil de entender
+// la alternativa es async await
+
+// async indica que esta funcion va procesar codigo asyncrono
+async function realizarPedido(producto) {
+    try {
+        const respuesta = await ordernarProducto(producto);
+        console.log('Respuesta recibida');
+        console.log(respuesta);
+        const respuestaProcesada = await procesarPedido(respuesta);
+        console.log(respuestaProcesada);
+    } catch(error) {
+        console.log(error);
+    }
+
+}
+
+realizarPedido('taza');
+```
 
 ## Modelo cliente-servidor
 
@@ -379,9 +535,42 @@ Cuando iniciemos el servidor, estara a la escucha de las solicitudes del cliente
 
 **puerto**  
 Ubicacion virtual del sistema operativo, en el cual se puede acceder una aplicacion o proceso especifico que se este ejecutando en ese puerto.
-
-`const http = require('http');`  
+ 
 `Ex 11` 
+```js
+const http = require('http');
+
+// Cada vez que reciba una solicitud va ejecuta la funcion que le pasemos como argumento
+const servidor = http.createServer((req, res) => {
+    console.log('Solicitud nueva');
+    res.end('Hola mundo');
+    //Enviamos la respuesta al cliente
+})
+
+// puerto, y funcion para definir que va ocurrir cuando el servidor comienze a ejecutarse
+const puerto = 3000;
+servidor.listen(puerto, () => {
+    console.log(`El servidor esta escuchando en el puerto ${puerto}`)
+});
+```
+
+Consulta de url, metodo, headers y cambio de codigo de estado
+```
+const servidor = http.createServer((req, res) => {
+    console.log('===> request (solicitud)');
+    console.log(req.url);
+    console.log(req.method);
+    console.log(req.headers);
+
+    console.log('===> response (respuesta)');
+    console.log(req.statusCode);
+    req.statusCode = 404;
+    req.setHeader('content-type', 'application/json');
+    console.log(req.getHeaders());
+    res.end('Hola mundo');
+})
+```
+
 
 #### Estructura de una url
 **URL**  
@@ -420,6 +609,17 @@ Usualmente usamos estos parametros, para filtrar en las solicitudes **GET** (par
 ### Modulo URL
 
 `Ex 12`
+```
+const miURL = new URL('https://www.udemy.com/topic/ethical-hacking/?price=price-free&sort=popularity');
+
+console.log(miURL.hostname) // www.udemy.com
+console.log(miURL.pathname); // /topic/ethical-hacking/
+console.log(miURL.searchParams); 
+console.log(miURL.searchParams.get('price')); 
+console.log(miURL.searchParams.get('sort')); 
+
+console.log(miURL.protocol);
+```
 
 ## Routing
 
@@ -431,67 +631,130 @@ Criterios para la ruta:
 - Metodo (Get, post, ...)
 - Path
 
-[JSON Formatter](https://chrome.google.com/webstore/search/json)
-`Ex 13`  
+[JSON Formatter](https://chrome.google.com/webstore/search/json)  
 
+`Ex 13 - Routing`  
+
+cursos.js
+```js
+let infoCursos = {
+    'programacion': [
+        {
+            id: 1,
+            titulo: 'Aprende python',
+            lenguaje: 'python',
+            vistas: 15000,
+            nivel: 'basico'
+        }, 
+        {
+            id: 2,
+            titulo: 'Python intermedio',
+            lenguaje: 'python',
+            vistas: 13553,
+            nivel: 'intermedio'
+        }, 
+        {
+            id: 3,
+            titulo: 'Aprende JavaScript',
+            lenguaje: 'javascript',
+            vistas: 10200,
+            nivel: 'basico'
+        }, 
+    ],
+    'edicion': [
+        {
+            id: 1,
+            titulo: 'Aprende photoshop',
+            tema: 'fotografia',
+            vistas: 15000,
+            nivel: 'basico'
+        }, 
+        {
+            id: 2,
+            titulo: 'Photoshop avanzado',
+            tema: 'fotografia',
+            vistas: 10221,
+            nivel: 'intermedio'
+        }, 
+    ]
+}
+
+module.exports.infoCursos = infoCursos;
+```  
+app.js
+```js
+const http = require("http");
+const cursos = require("./cursos");
+
+const servidor = http.createServer((req, res) => {
+  const {method} = req;
+
+  switch(method) {
+    case 'GET':
+      return manejarSolicitudGET(req, res);
+    case 'POST':
+      return manejarSolicitudPOST(req, res);
+    default:
+      res.statusCode = 501;
+      res.end(`El metodo no puede ser manejado por el servidor: ${method}`)
+  }
+});
+
+function manejarSolicitudGET(req, res) {
+  const path = req.url;
+
+  if(path === '/') {
+    res.statusCode = 200;
+    return res.end('Bienvenidos a primer servidor y api con node js')
+  } else if (path === '/cursos') {
+    res.statusCode = 200;
+    return res.end(JSON.stringify(cursos.infoCursos))
+  } else if (path === '/cursos/programacion') {
+    res.statusCode = 200;
+    return res.end(JSON.stringify(cursos.infoCursos.programacion))
+  }
+
+  res.statusCode = 404;
+  res.end('El recursos solicitado no existe')
+}
+
+function manejarSolicitudPOST(req, res) {
+  const path = req.url;
+
+  if(path === '/cursos/programacion') {
+    let cuerpo = '';
+
+    req.on('data', contenido => {
+      cuerpo += contenido.toString();
+    })
+
+    req.on('end', () => {
+      console.log(cuerpo)
+      cuerpo = JSON.parse(cuerpo);
+
+      console.log(cuerpo.titulo)
+      return res.end('El servidor recibio una solicitud POST para /cursos/programacion');
+    })
+  }
+}
+
+const puerto = 3000;
+servidor.listen(puerto, () => {
+  console.log(`El servidor esta escuchando en el puerto ${puerto}`);
+});
+```
 ### Nodemon
 Herramienta que reinicia la aplicacion de nodejs cuando detecta algun cambio en los archivos.  
 
 Instalacion  
-`npm install -g nodemon`  
+```
+npm install -g nodemon
+```  
 Se recomienda instalarlo de manera global para que este disponible el cualquier lado, y no solo para un proyecto especifico.  
 
 Ejecutarlo:  
-`nodemon app.js`  
-
-
-## Express
-Es el framework mas popular de Node.js  
-
-[Express en npm](https://www.npmjs.com/package/express)  
-
-Caracteristicas:  
-- Routing
-- Enfocado en alto rendimiento
-- Nos permite desarollar aplicaciones de Node.js mas rapido y codigo mas conciso.
-- unopinionated (no dogmatico)
-
-> No dogmatico. Puedes insertar casi cualquier middleware compatible que te guste dentro de la cadena de manejo de la petición, en casi cualquier orden que te apetezca. Puedes estructurar la app en un fichero o múltiples ficheros y usar cualquier estructura de directorios.  
-
-En comparación con otros frameworks como NestJS o AdonisJs, Express no se basa en ninguna estructura o formato. No impone ninguna opinión sobre cómo diseñar los archivos y qué parte de la lógica debería residir en algún lugar específico.
-
-Por ejemplo, si has trabajado con Laravel en PHP, esencialmente toma decisiones sobre dónde colocar los controladores, cómo funcionarán las cosas o qué ORM usar de manera predeterminada.
-
-Express permite al usuario decidir la estructura y el diseño del proyecto. Esto puede ser una espada de doble filo, porque no tener opiniones proporciona flexibilidad, pero si se usa incorrectamente, puede conducir a un desorden de organizacion.
-
-### Conceptos basicos
-
-**CRUD - ABC**   
-Operacione que podemos realizar con una base de datos.
-
-* Create (crear)    -> POST
-* Read  (leer)      -> GET
-* Update (Actualizar) -> PUT
-* Delete (eliminar) - DELETE
-
-ABC
-> Altas, Bajas, Cambios
-
-**REST**  
-Estilo de arquitectura de software para sistemas hipermedia distribuidos como la www.  
-
-**R**epresentational **S**tate **T**ransfer  
-
-**Restful API**  
-Es una API basada en REST  
-
-[Mas informacion sobre arquitectura REST](https://medium.com/@diego.coder/introducci%C3%B3n-a-las-apis-rest-6b3ad900acc9)  
-
-**Middleware**
-![](https://miro.medium.com/v2/resize:fit:1358/format:webp/1*4nJJgPOnlJwD6s-7ygqgTg.jpeg)
-
-Es una función que se puede ejecutar antes o después del manejo de una ruta. Esta función tiene acceso al objeto Request, Response y la función next().
-
-Las funciones middleware suelen ser utilizadas como mecanismo para verificar niveles de acceso antes de entrar en una ruta, manejo de errores, validación de datos, etc.
+```
+nodemon app.js
+```  
 </article>
 </section>
