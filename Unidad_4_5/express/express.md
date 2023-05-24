@@ -119,11 +119,11 @@ function isAdmin(req, res, next) {
 app.use(isAdmin);
 ```
 
+## Servir contenido estatico
 `app.use(express.static('./public))`
-[tuto express](https://www.youtube.com/watch?v=JmJ1WUoUIK4s)
 
 ## EJS
-[Documentacion NPM](https://www.npmjs.com/package/ejs)
+[Documentacion en NPM](https://www.npmjs.com/package/ejs)  
 [Documentacion Pagina oficial](https://ejs.co/)
 
 ```
@@ -174,23 +174,30 @@ app.set('views', path.join(__dirname, 'views'));
 Conectar bases de datos a las aplicaciones Express se consigue simplemente cargando el controlador (driver) de Node.js adecuado para la base de datos en la aplicación.  
 
 Ejemplos:  
-- (Cassandra)[https://expressjs.com/es/guide/database-integration.html#cassandra]
-- (MySQL)[https://expressjs.com/es/guide/database-integration.html#mysql]
-- (MongoDB)[https://expressjs.com/es/guide/database-integration.html#mongo]
-- (Oracle)[https://expressjs.com/es/guide/database-integration.html#oracle]
-- (PostgreSQL)[https://expressjs.com/es/guide/database-integration.html#postgres]
-- (Redis)[https://expressjs.com/es/guide/database-integration.html#redis]
+- [Cassandra](https://expressjs.com/es/guide/database-integration.html#cassandra)  
+- [MySQL](https://expressjs.com/es/guide/database-integration.html#mysql)  
+- [MongoDB](https://expressjs.com/es/guide/database-integration.html#mongo)  
+- [Oracle](https://expressjs.com/es/guide/database-integration.html#oracle)  
+- [PostgreSQL](https://expressjs.com/es/guide/database-integration.html#postgres)  
+- [Redis](https://expressjs.com/es/guide/database-integration.html#redis)  
 
 #### Instalacion del controlador
-`npm install mysql2 o  npm i mysql2`  
+```shell
+npm install mysql2
+```
+ o  
+ ```
+npm i mysql2
+```
+  
 (npm documentacion)[https://www.npmjs.com/package/mysql2]
 
 
 ### BD MySQL
-Servicio (PlanetScale)[https://planetscale.com/] nos permitira tener una bd de MySQL remota, sin la necesidad de instalar nada.
+Servicio [PlanetScale](https://planetscale.com/) nos permitira tener una bd de MySQL remota, sin la necesidad de instalar nada.
 
 **Registro**  
-Tener una cuenta de github (link Registro)[https://auth.planetscale.com/sign-in]  
+Tener una cuenta de github [link de Registro](https://auth.planetscale.com/sign-in)   
 
 Crear base de datos **todolist**
 
@@ -241,10 +248,10 @@ const connection = mysql.createConnection({
 const result = await connection.query(SELECT "Hellow World" as Resultado)
 console.log(result)
 
-### Cliente mysql
-(Descarga)[https://www.mysql.com/products/workbench/]
-(Servidor)[https://dev.mysql.com/downloads/mysql/]
-
 ``` 
+### Cliente mysql
+[Descargar Workbench](https://www.mysql.com/products/workbench/)  
+[Servidor Mysql](https://dev.mysql.com/downloads/mysql/)
+
 </article>
 </section>

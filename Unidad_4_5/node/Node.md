@@ -531,9 +531,9 @@ Es un numero que indica si se ha completado exitosamente, o no, la solicitud htt
 
 Este modulo permite transmitir informacion con el protocolo HTTP.
 
-Cuando iniciemos el servidor, estara a la escucha de las solicitudes del cliente y para eso necesitamos un puerto.
+Cuando iniciemos el servidor, estara a la escucha de las solicitudes del cliente y para eso necesitamos un **puerto**.
 
-**puerto**  
+**Puerto**  
 Ubicacion virtual del sistema operativo, en el cual se puede acceder una aplicacion o proceso especifico que se este ejecutando en ese puerto.
  
 `Ex 11` 

@@ -14,7 +14,7 @@ html, body, main {
 }
 
 body {
-    background-image: url('/assets/img/path_bg.png');
+    background-image: url('../img/path_bg.png');
     margin: 0;
 }
 
