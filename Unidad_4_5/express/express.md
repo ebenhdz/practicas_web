@@ -263,13 +263,14 @@ Para usar cors en node podemos hacer uso del paquete cors.
 
 **Instalacion**  
 
-```
+```shell
 npm install cors
-```
+```  
 
-```
+```js
 app.use(cors());
-```
+```  
+
 [Documentacion](https://expressjs.com/en/resources/middleware/cors.html)
 
 ## ENV
