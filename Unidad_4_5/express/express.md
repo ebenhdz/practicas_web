@@ -15,6 +15,7 @@
 - [Base de datos](#basededatos)
 - [CORS](#cors)
 - [.env](#env)
+- [Recursos](#recursos)
 </aside>
 
 <article markdown="1">
