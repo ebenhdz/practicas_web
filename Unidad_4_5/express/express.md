@@ -10,7 +10,11 @@
     * [Importar / Exportar] (#importarexportar)
     * [Destructuracion] (#destructuracion)
     * [Modulos principales] (#modulosprincipalesdenodejs)
-- [Express](#express)
+- [Middleware](#middleware)
+- [EJS](#ejs)
+- [Base de datos](#basededatos)
+- [CORS](#cors)
+- [.env](#env)
 </aside>
 
 <article markdown="1">
@@ -76,9 +80,6 @@ npm i express
 * json `res.json()`
 * archivos `res.sendFile()`
 
-## Trabajar con form
-`app.use(express.urlencoded({extended: false }))`  
-
 ## Request params
 ```
 app.get('/usuario/:id', (req, res) => { 
@@ -117,6 +118,18 @@ function isAdmin(req, res, next) {
 
 // Se agrega el middleware en la aplicación.
 app.use(isAdmin);
+```
+
+### Leer request body tipo JSON
+Cuando hagamos una peticion POST, PUT, PATH por fetch, axios, es comun enviar los datos por JSON. Para que express comprenda que el body es un json hacemos uso de su middleware especifico:
+```
+app.use(express.json())
+```
+
+### Trabajar con form
+Si hacemos una peticion POST, PUT, PATH desde un formulario normal de HTML, el body se envia como Form Data, express tiene middleware especifico para leer ese tipo de body:
+```
+app.use(express.urlencoded({extended: false }))
 ```
 
 ## Servir contenido estatico
@@ -190,7 +203,7 @@ npm install mysql2
 npm i mysql2
 ```
   
-(npm documentacion)[https://www.npmjs.com/package/mysql2]
+[npm documentacion](https://www.npmjs.com/package/mysql2)
 
 
 ### BD MySQL
@@ -250,8 +263,8 @@ console.log(result)
 ```
 
 ### Cliente mysql
-(Descarga)[https://www.mysql.com/products/workbench/]
-(Servidor)[https://dev.mysql.com/downloads/mysql/]
+[Descarga](https://www.mysql.com/products/workbench/)
+[Servidor](https://dev.mysql.com/downloads/mysql/)
 
 
 ## Cors
@@ -271,7 +284,7 @@ npm install cors
 app.use(cors());
 ```  
 
-[Documentacion](https://expressjs.com/en/resources/middleware/cors.html)
+(Documentacion)[https://expressjs.com/en/resources/middleware/cors.html]
 
 ## ENV
 
