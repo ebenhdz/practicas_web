@@ -338,8 +338,7 @@ process.env.HOST
 ```
 
 ## Recursos
-- [Libro Aprende a trabajar con web APIS](https://cosasdedevs.com/static/dist/files/guia-para-aprender-a-trabajar-con-apis-version-1.pdf?utm_source=pocket_saves
-)
+- [Libro Aprende a trabajar con web APIS](https://cosasdedevs.com/static/dist/files/guia-para-aprender-a-trabajar-con-apis-version-1.pdf)
 - [jsend, Convencion sobre datos en la respuesta de un API](https://github.com/omniti-labs/jsend)
 - [La mejor estructura de un proyecto express](https://blog.logrocket.com/organizing-express-js-project-structure-better-productivity/)
 </article>
