@@ -247,6 +247,7 @@ const connection = mysql.createConnection({
 
 const result = await connection.query(SELECT "Hellow World" as Resultado)
 console.log(result)
+```
 
 ### Cliente mysql
 (Descarga)[https://www.mysql.com/products/workbench/]
@@ -265,6 +266,7 @@ Para usar cors en node podemos hacer uso del paquete cors.
 ```
 npm install cors
 ```
+
 ```
 app.use(cors());
 ```
