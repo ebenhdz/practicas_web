@@ -81,6 +81,10 @@ npm i express
 * archivos `res.sendFile()`
 
 ## Request params
+Son los parametros enviados por **URL** ej: `https://www.starplus.com/es-419/video/54058e85-172c-4577-96f8-2de7a1992567`.  
+En este caso se envia el ID del Video `https://www.starplus.com/es-419/video/{idVideo}`  
+
+Para recibirlo en express agregar ese parametro con el character `:` seguido del nombre del parametro: `:idVideo`.
 ```
 app.get('/usuario/:id', (req, res) => { 
     let idUsuario = req.params.id;
@@ -97,6 +101,9 @@ app.get('/ventas/:year/:month', (req, res) => {
 ```
 
 ## Query Params
+Son los parametros enviados por URL, al final del **endpoint**, son usados normalmente para filtar resultados. Para el primer parametro se coloca el caracter `?` seguido del `nombre=valor`, los siguientes parametros se agregan usando el caracter `&`.  
+Si queremos consultar una lista libros usando los parametros page y limit, quedaria asi: `/books?page=1&limit=25`
+
 ```
 https://rickandmortyapi.com/api/character?page=2
 
@@ -328,5 +335,11 @@ require('dotenv').config()
 ...
 process.env.HOST
 ```
+
+## Recursos
+- [Libro Aprende a trabajar con web APIS](https://cosasdedevs.com/static/dist/files/guia-para-aprender-a-trabajar-con-apis-version-1.pdf?utm_source=pocket_saves
+)
+- [jsend, Convencion sobre datos en la respuesta de un API](https://github.com/omniti-labs/jsend)
+- [La mejor estructura de un proyecto express](https://blog.logrocket.com/organizing-express-js-project-structure-better-productivity/)
 </article>
 </section>
