@@ -341,5 +341,6 @@ process.env.HOST
 - [Libro Aprende a trabajar con web APIS](https://cosasdedevs.com/static/dist/files/guia-para-aprender-a-trabajar-con-apis-version-1.pdf)
 - [jsend, Convencion sobre datos en la respuesta de un API](https://github.com/omniti-labs/jsend)
 - [La mejor estructura de un proyecto express](https://blog.logrocket.com/organizing-express-js-project-structure-better-productivity/)
+- [URL amigables SEO](https://marketersgroup.es/seo-friendly-url/)
 </article>
 </section>
