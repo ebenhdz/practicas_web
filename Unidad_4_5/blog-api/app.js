@@ -9,6 +9,7 @@ app.use(express.json())
 
 app.use(routerComments)
 
-app.listen(3000, () => {
-    console.log("Server API running 3000")
+const PUERTO = 3000;
+app.listen(PUERTO, () => {
+    console.log(`Servidor API corrriendo en el puerto ${PUERTO}`)
 })

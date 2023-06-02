@@ -248,10 +248,69 @@ const connection = mysql.createConnection({
 const result = await connection.query(SELECT "Hellow World" as Resultado)
 console.log(result)
 
-``` 
 ### Cliente mysql
-[Descargar Workbench](https://www.mysql.com/products/workbench/)  
-[Servidor Mysql](https://dev.mysql.com/downloads/mysql/)
+(Descarga)[https://www.mysql.com/products/workbench/]
+(Servidor)[https://dev.mysql.com/downloads/mysql/]
 
+
+## Cors
+El uso compartido de recursos entre orígenes (CORS) es un mecanismo para integrar aplicaciones. CORS define una forma con la que las aplicaciones web clientes cargadas en un dominio pueden interactuar con los recursos de un dominio distinto. Esto resulta útil porque las aplicaciones complejas suelen hacer referencia a API y recursos de terceros en el código del cliente. Por ejemplo, la aplicación puede utilizar su navegador para extraer videos de la API de una plataforma de video, utilizar fuentes de una biblioteca pública de fuentes o mostrar datos meteorológicos de una base de datos meteorológica nacional. CORS permite que el navegador del cliente compruebe con los servidores de terceros si la solicitud está autorizada antes de realizar cualquier transferencia de datos.
+
+En el pasado, cuando las tecnologías de Internet aún eran nuevas, se producían problemas de falsificación de solicitudes entre sitios (CSRF). Estos problemas enviaban solicitudes de cliente falsas desde el navegador de la víctima a otra aplicación.
+
+Para usar cors en node podemos hacer uso del paquete cors.
+
+**Instalacion**  
+
+```
+npm install cors
+```
+```
+app.use(cors());
+```
+[Documentacion](https://expressjs.com/en/resources/middleware/cors.html)
+
+## ENV
+
+El uso de **variables de entorno**, o environment, en las aplicaciones web es importante para la separación del código por responsabilidades: no debemos mezclar el código de la aplicación con los valores de configuración.
+
+Las variables de configuración cambiarán generalmente según el entorno de ejecución, esto permitira que el codigo siga funcionando sin hacer modificaciones, y tener almacenadas la configuracion propia de cada entorno (local para desarrollo, remoto para produccion).
+
+Los archivos **.env** se pueden considerar un estándar para el almacenamiento de variables de entorno.
+
+La sintaxis de los .env contiene pares clave (nombre de variable) y valor, separados por un carácter "=". Cada variable en una línea.
+
+Ejemplo:
+```console
+MODE="development"
+HOST="local.desarrolloweb.com"
+```
+> Los nombre de las variables se suelen poner en mayusculas por convencion.
+
+El archivo .env generalmente lo colocarás en la raíz de tu proyecto, en un archivo sin nombre.
+
+> Otra cosa habitual es que los archivos .env no se compartan atravez del repositorio. Por ejemplo, si usas Git tendrías que poner los archivos .env dentro del **gitignore**.
+
+### Paquete dotenv
+
+[Documentacion package dotenv](https://www.npmjs.com/package/dotenv)  
+
+Este paquete nos permitira leer archivos .env
+
+#### Instalacion
+```
+npm install dotenv
+```
+
+#### Leer archivo .env
+
+Importamos el paquete y lo configuramos. Ahora en `process.env` tiene las llaves y claves definidas en el `.env``
+
+```
+require('dotenv').config()
+
+...
+process.env.HOST
+```
 </article>
 </section>
